@@ -1,4 +1,4 @@
-package top.hanjie.study;
+package top.hanjie.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
