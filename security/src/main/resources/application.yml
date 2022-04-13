@@ -1,0 +1,8 @@
+server:
+  servlet:
+    # \u8BF7\u6C42\u6570\u636E\u8F6C\u7801UTF8
+    encoding:
+      force: true
+      enabled: true
+      charset: UTF-8
+  port: 8898
