@@ -10,7 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import top.hanjie.security.jwt.JwtAuthenticationFilter;
 
+/**
+ * Security 配置类
+ * @author 黄汉杰
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -39,6 +45,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
+     * 配置 jwt 权限过滤器
+     * @author 黄汉杰
+     * @date 2022/4/14 0014 11:36
+     * @return top.hanjie.security.jwt.JwtAuthenticationFilter
+     */
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() {
+        return new JwtAuthenticationFilter();
+    }
+
+    /**
      * 配置
      * @author 黄汉杰
      * @date 2022/4/13 0013 16:46
@@ -53,8 +70,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/security/login").permitAll()
                 // 其他请求都需要认证后才能访问
                 .anyRequest().authenticated()
+                // 添加自定义 jwt 权限过滤器
+                .and().addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 // 打开 SpringSecurity 的跨域
-                .and().cors()
+                .cors()
                 // 关闭 CSRF
                 .and().csrf().disable()
                 // 关闭 Session 机制

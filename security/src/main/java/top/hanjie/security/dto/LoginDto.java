@@ -5,6 +5,10 @@ import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+/**
+ * 登录传输类
+ * @author 黄汉杰
+ */
 public class LoginDto {
 
     @Data

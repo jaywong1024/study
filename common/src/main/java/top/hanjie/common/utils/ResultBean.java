@@ -1,4 +1,4 @@
-package utils;
+package top.hanjie.common.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * 通用请求返回
+ * @author 黄汉杰
  */
 @Data
 @NoArgsConstructor

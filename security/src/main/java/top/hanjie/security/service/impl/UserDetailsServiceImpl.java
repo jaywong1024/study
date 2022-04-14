@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * 实现 UserDetailsService 读取用户信息
+ * @author 黄汉杰
+ */
 @Slf4j
 @Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService {
