@@ -1,14 +1,16 @@
-package top.hanjie.security.jwt;
+package top.hanjie.security.utils;
 
 import cn.hutool.core.util.StrUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
+import top.hanjie.common.utils.SpringContextUtils;
+import top.hanjie.security.config.JwtProperties;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Objects;
@@ -20,10 +22,14 @@ import java.util.Objects;
  */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class JwtUtils {
 
-    private final JwtProperties jwtProperties;
+    private static JwtProperties jwtProperties;
+
+    @PostConstruct
+    public void init() {
+        jwtProperties = SpringContextUtils.getBean(JwtProperties.class);
+    }
 
     /**
      * 创建令牌
@@ -32,7 +38,7 @@ public class JwtUtils {
      * @author 黄汉杰
      * @date 2022/4/13 0013 16:19
      */
-    public String createToken(String subject) {
+    public static String createToken(String subject) {
         // 1.当前时间
         final Date now = new Date();
         // 2.过期时间
@@ -54,7 +60,7 @@ public class JwtUtils {
      * @author 黄汉杰
      * @date 2022/4/14 0014 11:57
      */
-    public boolean verifyToken(String token) {
+    public static boolean legal(String token) {
         return StrUtil.isNotBlank(token) && token.startsWith(jwtProperties.getPrefix());
     }
 
@@ -65,9 +71,9 @@ public class JwtUtils {
      * @author 黄汉杰
      * @date 2022/4/14 0014 13:42
      */
-    public String getToken(HttpServletRequest request) {
+    public static String getToken(HttpServletRequest request) {
         String token = request.getHeader(HttpHeaders.AUTHORIZATION);
-        return this.verifyToken(token) ? token.substring(jwtProperties.getPrefix().length()) : StrUtil.EMPTY;
+        return legal(token) ? token.substring(jwtProperties.getPrefix().length()) : StrUtil.EMPTY;
     }
 
     /**
@@ -77,9 +83,21 @@ public class JwtUtils {
      * @author 黄汉杰
      * @date 2022/4/14 0014 13:49
      */
-    public String getSubject(String token) {
-        Claims claims = this.getClaims(token);
+    public static String getSubject(String token) {
+        Claims claims = getClaims(token);
         return Objects.nonNull(claims) ? claims.getSubject() : StrUtil.EMPTY;
+    }
+
+    /**
+     * 判断 token 是否过期
+     * @author 黄汉杰
+     * @date 2022/4/15 0015 11:21
+     * @param token   令牌
+     * @return boolean
+     */
+    public static boolean expired(String token) {
+        Claims claims = getClaims(token);
+        return Objects.nonNull(claims) ? claims.getExpiration().before(new Date()) : Boolean.TRUE;
     }
 
     /**
@@ -89,8 +107,11 @@ public class JwtUtils {
      * @author 黄汉杰
      * @date 2022/4/14 0014 13:45
      */
-    private Claims getClaims(String token) {
+    private static Claims getClaims(String token) {
         Claims claims = null;
+        if (StrUtil.isBlank(token)) {
+            return null;
+        }
         try {
             claims = Jwts.parser()
                     .setSigningKey(jwtProperties.getSecretKey())

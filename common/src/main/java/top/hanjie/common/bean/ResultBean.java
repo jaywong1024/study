@@ -1,4 +1,4 @@
-package top.hanjie.common.utils;
+package top.hanjie.common.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

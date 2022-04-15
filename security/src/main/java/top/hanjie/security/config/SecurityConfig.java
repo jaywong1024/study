@@ -11,7 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import top.hanjie.security.jwt.JwtAuthenticationFilter;
+import top.hanjie.security.filter.JwtAuthenticationFilter;
 
 /**
  * Security 配置类
@@ -48,7 +48,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      * 配置 jwt 权限过滤器
      * @author 黄汉杰
      * @date 2022/4/14 0014 11:36
-     * @return top.hanjie.security.jwt.JwtAuthenticationFilter
+     * @return top.hanjie.security.filter.JwtAuthenticationFilter
      */
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() {

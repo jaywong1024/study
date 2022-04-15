@@ -7,10 +7,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
-import top.hanjie.security.cache.Cache;
-import top.hanjie.security.cache.CacheGroup;
+import top.hanjie.security.utils.CacheUtils;
+import top.hanjie.security.enums.CacheGroup;
 import top.hanjie.security.dto.LoginDto;
-import top.hanjie.security.jwt.JwtUtils;
+import top.hanjie.security.utils.JwtUtils;
 import top.hanjie.security.service.SecurityService;
 
 import javax.annotation.Resource;
@@ -31,8 +31,6 @@ import javax.annotation.Resource;
 public class SecurityServiceImpl implements SecurityService {
 
     @Resource
-    private JwtUtils jwtUtils;
-    @Resource
     private AuthenticationManager authenticationManager;
 
     @Override
@@ -48,9 +46,9 @@ public class SecurityServiceImpl implements SecurityService {
         // 4.拿到用户信息
         User user = (User) authentication.getPrincipal();
         // 5.根据 username 生成自定义 Token
-        String token = jwtUtils.createToken(user.getUsername());
+        String token = JwtUtils.createToken(user.getUsername());
         // 6.写入缓存
-        Cache.set(CacheGroup.USER, user.getUsername(), user, 3600L * 24);
+        CacheUtils.set(CacheGroup.USER, user.getUsername(), user, 3600L * 24);
         // 7.组装返回
         return LoginDto.Out.builder().token(token).build();
     }

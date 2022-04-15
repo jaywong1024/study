@@ -1,4 +1,4 @@
-package top.hanjie.security.cache;
+package top.hanjie.security.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

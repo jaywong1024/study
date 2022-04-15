@@ -1,13 +1,13 @@
-package top.hanjie.security.cache;
+package top.hanjie.security.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
-import org.springframework.beans.BeansException;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+import top.hanjie.common.utils.SpringContextUtils;
+import top.hanjie.security.enums.CacheGroup;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -17,13 +17,13 @@ import java.util.concurrent.TimeUnit;
  */
 @Slf4j
 @Component
-public class Cache implements ApplicationContextAware {
+public class CacheUtils  {
 
     private static RedissonClient REDISSON_CLIENT;
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        REDISSON_CLIENT = applicationContext.getBean(RedissonClient.class);
+    @PostConstruct
+    public void init() {
+        REDISSON_CLIENT = SpringContextUtils.getBean(RedissonClient.class);
     }
 
     /**

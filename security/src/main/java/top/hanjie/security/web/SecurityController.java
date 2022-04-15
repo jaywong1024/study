@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.hanjie.common.utils.ResultBean;
+import top.hanjie.common.bean.ResultBean;
 import top.hanjie.security.dto.LoginDto;
 import top.hanjie.security.service.SecurityService;
 
@@ -27,7 +27,7 @@ public class SecurityController {
      * @author 黄汉杰
      * @date 2022/4/14 0014 14:01
      * @param in   入参
-     * @return top.hanjie.common.utils.ResultBean<top.hanjie.security.dto.LoginDto.Out>
+     * @return top.hanjie.common.bean.ResultBean<top.hanjie.security.dto.LoginDto.Out>
      */
     @PostMapping("login")
     public ResultBean<LoginDto.Out> login(@RequestBody @Valid LoginDto.In in) {
