@@ -3,11 +3,11 @@ package top.hanjie.security.utils;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
-import top.hanjie.common.utils.SpringContextUtils;
 import top.hanjie.security.enums.CacheGroup;
 
-import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -21,9 +21,9 @@ public class CacheUtils  {
 
     private static RedissonClient REDISSON_CLIENT;
 
-    @PostConstruct
-    public void init() {
-        REDISSON_CLIENT = SpringContextUtils.getBean(RedissonClient.class);
+    @Autowired
+    private CacheUtils(ApplicationContext applicationContext) {
+        REDISSON_CLIENT = applicationContext.getBean(RedissonClient.class);
     }
 
     /**
