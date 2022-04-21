@@ -4,10 +4,14 @@ server:
     encoding:
       force: true
       enabled: true
-      charset: UTF-8
+      charset: utf-8
   port: 8898
 
 spring:
+  # 国际化
+  messages:
+    basename: message
+    encoding: utf-8
   mvc:
     # 打印 web-log
     log-request-details: true
