@@ -21,6 +21,7 @@
     <modules>
         <module>security</module>
         <module>common</module>
+        <module>cache</module>
     </modules>
 
     <!-- 配置 -->
@@ -30,16 +31,43 @@
         <jjwt-version>0.9.1</jjwt-version>
         <hutool-version>5.7.21</hutool-version>
         <redisson-version>3.16.7</redisson-version>
+        <open-feign-version>3.1.1</open-feign-version>
+        <fastjson-version>2.0.1</fastjson-version>
     </properties>
+
+    <dependencies>
+        <!-- fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- open feign -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${open-feign-version}</version>
+            </dependency>
             <!-- redisson -->
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
                 <version>${redisson-version}</version>
+            </dependency>
+            <!-- fastjson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson-version}</version>
             </dependency>
             <!-- hutool -->
             <dependency>

@@ -16,7 +16,7 @@ import javax.validation.Valid;
  * @author 黄汉杰
  */
 @RestController
-@RequestMapping("/security")
+@RequestMapping("security")
 public class SecurityController {
 
     @Resource

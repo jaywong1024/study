@@ -11,6 +11,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum CacheGroup {
 
+    /**
+     * 用户：user
+     */
     USER("user:");
 
     private final String code;

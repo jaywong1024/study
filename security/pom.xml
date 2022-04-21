@@ -13,10 +13,11 @@
     <version>1.0.0</version>
 
     <dependencies>
-        <!-- redisson -->
+        <!-- cache -->
         <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
+            <groupId>top.hanjie</groupId>
+            <artifactId>cache</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <!-- common -->
         <dependency>

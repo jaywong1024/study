@@ -1,5 +1,6 @@
 package top.hanjie.security.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -7,13 +8,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
-import top.hanjie.security.utils.CacheUtils;
-import top.hanjie.security.enums.CacheGroup;
 import top.hanjie.security.dto.LoginDto;
-import top.hanjie.security.utils.JwtUtils;
+import top.hanjie.security.enums.CacheGroup;
 import top.hanjie.security.service.SecurityService;
+import top.hanjie.security.utils.CacheUtils;
+import top.hanjie.security.utils.JwtUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 权限相关接口实现类.
@@ -49,8 +52,12 @@ public class SecurityServiceImpl implements SecurityService {
         String token = JwtUtils.createToken(user.getUsername());
         // 6.写入缓存
         CacheUtils.set(CacheGroup.USER, user.getUsername(), user, 3600L * 24);
-        // 7.组装返回
-        return LoginDto.Out.builder().token(token).build();
+        // 7.获取权限
+        List<LoginDto.Permission> permissions = user.getAuthorities().stream()
+                .map(e -> JSONObject.parseObject(e.getAuthority(), LoginDto.Permission.class))
+                .collect(Collectors.toList());
+        // 8.组装返回
+        return LoginDto.Out.builder().token(token).permissions(permissions).build();
     }
 
 }
