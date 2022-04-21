@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
-
 /**
  * 权限信息
  *
@@ -14,7 +12,7 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-public class PermissionInfo extends BaseInfo implements Serializable {
+public class PermissionInfo extends BaseInfo {
 
     /**
      * 权限名称

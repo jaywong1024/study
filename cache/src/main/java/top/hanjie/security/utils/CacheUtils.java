@@ -37,7 +37,7 @@ public class CacheUtils  {
      * @date 2022/4/14 0014 15:12
      */
     public static void set(CacheGroup group, String key, Object val, long time) {
-        REDISSON_CLIENT.getBucket(group + key).set(val, time, TimeUnit.SECONDS);
+        REDISSON_CLIENT.getBucket(group.getCode() + key).set(val, time, TimeUnit.SECONDS);
     }
 
     /**
@@ -49,7 +49,7 @@ public class CacheUtils  {
      * @date 2022/4/14 0014 15:42
      */
     public static <T> T get(CacheGroup group, String key, Class<? extends T> clazz) {
-        RBucket<T> bucket = REDISSON_CLIENT.getBucket(group + key);
+        RBucket<T> bucket = REDISSON_CLIENT.getBucket(group.getCode() + key);
         return bucket.get();
     }
 

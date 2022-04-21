@@ -1,18 +1,18 @@
 package top.hanjie.security.voter;
 
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.FilterInvocation;
 import top.hanjie.security.entity.PermissionInfo;
+import top.hanjie.security.entity.UserDetail;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -50,13 +50,11 @@ public class PermissionVoter implements AccessDecisionVoter<FilterInvocation> {
         String url = object.getRequestUrl();
         String method = object.getRequest().getMethod();
         // 2.获取当前用户权限
-        Collection<GrantedAuthority> authorities = ((User) authentication.getPrincipal()).getAuthorities();
+        Set<PermissionInfo> permissions = ((UserDetail) authentication).getPermissions();
         // 3.判断是否有权限访问
-        authorities = authorities.stream().filter(f -> {
-            PermissionInfo permissionInfo = JSONObject.parseObject(f.getAuthority(), PermissionInfo.class);
-            return Objects.equals(permissionInfo.getUrl(), url) && Objects.equals(permissionInfo.getMethod(), method);
-        }).collect(Collectors.toList());
-        log.info("Permission voter, url: {}, method: {}, access: {}", url, method, authorities.size() > 0);
+        List<PermissionInfo> authorities = permissions.stream()
+                .filter(p -> Objects.equals(p.getUrl(), url) && Objects.equals(p.getMethod(), method))
+                .collect(Collectors.toList());
         // 4.有权限投赞成票；否则反对票
         return authorities.size() > 0 ? ACCESS_GRANTED : ACCESS_DENIED;
     }

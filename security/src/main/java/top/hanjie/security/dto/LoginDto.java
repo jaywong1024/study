@@ -31,6 +31,39 @@ public class LoginDto {
         private String method;
     }
 
+    /**
+     * 角色
+     */
+    @Data
+    public static class Role {
+        /**
+         * 角色名称
+         */
+        private String name;
+        /**
+         * 角色名称
+         */
+        private String code;
+        /**
+         * 角色名称
+         */
+        private String remark;
+    }
+    /**
+     * 角色
+     */
+    @Data
+    public static class User {
+        /**
+         * 用户名
+         */
+        private String username;
+        /**
+         * 昵称
+         */
+        private String nickname;
+    }
+
     @Data
     public static class In {
         /**
@@ -52,6 +85,14 @@ public class LoginDto {
          * 令牌
          */
         private String token;
+        /**
+         * 用户信息
+         */
+        private User user;
+        /**
+         * 角色信息
+         */
+        private List<Role> roles;
         /**
          * 权限信息
          */
