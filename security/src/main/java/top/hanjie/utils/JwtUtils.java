@@ -5,12 +5,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import top.hanjie.config.JwtProperties;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.Objects;
@@ -26,9 +25,9 @@ public class JwtUtils {
 
     private static JwtProperties jwtProperties;
 
-    @Autowired
-    private JwtUtils(ApplicationContext applicationContext) {
-        jwtProperties = applicationContext.getBean(JwtProperties.class);
+    @PostConstruct
+    public void init () {
+        jwtProperties = SpringContextUtils.getBean(JwtProperties.class);
     }
 
     /**

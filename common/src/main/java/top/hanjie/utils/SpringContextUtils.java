@@ -1,8 +1,8 @@
 package top.hanjie.utils;
 
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationContextInitializer;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -13,12 +13,12 @@ import java.util.Map;
  * @author 黄汉杰
  */
 @Component
-public class SpringContextUtils implements ApplicationContextAware {
+public class SpringContextUtils implements ApplicationContextInitializer<ConfigurableApplicationContext> {
 
     private static ApplicationContext APPLICATION_CONTEXT;
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void initialize(ConfigurableApplicationContext applicationContext) {
         APPLICATION_CONTEXT = applicationContext;
     }
 

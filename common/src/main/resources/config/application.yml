@@ -1,0 +1,4 @@
+context:
+  initializer:
+    # 容器初始化前操作
+    classes: top.hanjie.utils.SpringContextUtils
