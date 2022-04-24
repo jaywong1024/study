@@ -1,0 +1,75 @@
+server:
+  servlet:
+    # 转码 utf-8
+    encoding:
+      force: true
+      enabled: true
+      charset: utf-8
+  port: 8899
+
+spring:
+  # 国际化
+  messages:
+    basename: message
+    encoding: utf-8
+  mvc:
+    # 打印 web-log
+    log-request-details: true
+  # 配置 HikariCP 数据源
+  datasource:
+    # 数据源类型
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生 SQL 异常
+      connection-timeout: 30000
+      # 最小连接数
+      minimum-idle: 10
+      # 最大连接数
+      maximum-pool-size: 20
+      # 自动提交
+      auto-commit: true
+      # 连接超时的最大时长（毫秒），超时则被释放（retired），默认 10 分钟
+      idle-timeout: 600000
+      # 连接池名字
+      pool-name: DateSourceHikariCP
+      max-lifetime: 1800000 # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟
+      connection-test-query: SELECT 1
+
+    # 配置数据库连接
+    url: jdbc:mysql://192.168.7.233:3306/permission?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # 缓存配置
+  redis:
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+    port: 6379
+    host: 192.168.7.233
+    database: 0
+    password: redis_pw7y
+
+# mybatis plus 配置
+mybatis-plus:
+  # 检查 XML 映射文件
+  check-config-location: true
+  configuration:
+    # 驼峰命名
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      # 设置逻辑删除
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+
+# 配置日志级别
+logging:
+  level:
+    web: debug
+    org:
+      example:
+        security: debug

@@ -22,17 +22,19 @@
         <module>security</module>
         <module>common</module>
         <module>cache</module>
+        <module>permission-mysql</module>
     </modules>
 
     <!-- 配置 -->
     <properties>
         <java.version>1.8</java.version>
-        <mybatis-plus-version>3.3.0</mybatis-plus-version>
-        <jjwt-version>0.9.1</jjwt-version>
-        <hutool-version>5.7.21</hutool-version>
-        <redisson-version>3.16.7</redisson-version>
-        <open-feign-version>3.1.1</open-feign-version>
-        <fastjson-version>2.0.1</fastjson-version>
+        <mybatis-plus.version>3.3.0</mybatis-plus.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <hutool.version>5.7.21</hutool.version>
+        <redisson.version>3.16.7</redisson.version>
+        <open-feign.version>3.1.1</open-feign.version>
+        <fastjson.version>2.0.1</fastjson.version>
+        <jsqlparser.version>4.4</jsqlparser.version>
     </properties>
 
     <dependencies>
@@ -51,41 +53,47 @@
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- jsqlparser -->
+            <dependency>
+                <groupId>com.github.jsqlparser</groupId>
+                <artifactId>jsqlparser</artifactId>
+                <version>${jsqlparser.version}</version>
+            </dependency>
             <!-- open feign -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>${open-feign-version}</version>
+                <version>${open-feign.version}</version>
             </dependency>
             <!-- redisson -->
             <dependency>
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson-spring-boot-starter</artifactId>
-                <version>${redisson-version}</version>
+                <version>${redisson.version}</version>
             </dependency>
             <!-- fastjson -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>${fastjson-version}</version>
+                <version>${fastjson.version}</version>
             </dependency>
             <!-- hutool -->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>${hutool-version}</version>
+                <version>${hutool.version}</version>
             </dependency>
             <!-- mybatis plus -->
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus-version}</version>
+                <version>${mybatis-plus.version}</version>
             </dependency>
             <!-- jjwt -->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
-                <version>${jjwt-version}</version>
+                <version>${jjwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

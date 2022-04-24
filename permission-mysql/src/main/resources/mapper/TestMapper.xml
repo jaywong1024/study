@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.hanjie.mapper.TestMapper">
+
+    <select id="unionAll" resultType="top.hanjie.entity.Test">
+        SELECT *
+        FROM (SELECT t2.*
+              FROM test t1
+                       LEFT JOIN test t2 ON t1.id = t2.id)
+        union all
+        SELECT *
+        FROM (SELECT t2.*
+              FROM test t1
+                       LEFT JOIN test t2 ON t1.id = t2.id)
+    </select>
+
+    <select id="join" resultType="top.hanjie.entity.Test">
+        SELECT t2.*
+        FROM test t1
+                 LEFT JOIN test t2 ON t1.id = t2.id
+    </select>
+
+</mapper>

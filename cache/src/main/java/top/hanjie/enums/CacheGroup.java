@@ -14,7 +14,10 @@ public enum CacheGroup {
     /**
      * 用户：user
      */
-    USER("user:");
+    USER("user:"),
+    ROLE("role:"),
+    PERMISSION("permission:"),
+    PERMISSION_LINK("permission_link:");
 
     private final String code;
 
