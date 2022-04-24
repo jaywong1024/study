@@ -50,7 +50,7 @@ public class PermissionVoter implements AccessDecisionVoter<FilterInvocation> {
         String url = object.getRequestUrl();
         String method = object.getRequest().getMethod();
         // 2.获取当前用户权限
-        Set<PermissionInfo> permissions = ((UserDetail) authentication).getPermissions();
+        Set<PermissionInfo> permissions = ((UserDetail) authentication.getPrincipal()).getPermissions();
         // 3.判断是否有权限访问
         List<PermissionInfo> authorities = permissions.stream()
                 .filter(p -> Objects.equals(p.getUrl(), url) && Objects.equals(p.getMethod(), method))

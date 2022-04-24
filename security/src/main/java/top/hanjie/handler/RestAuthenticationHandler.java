@@ -26,7 +26,7 @@ public class RestAuthenticationHandler implements AuthenticationEntryPoint {
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.getWriter().println(JSONObject.toJSONString(
-                ResultBean.error(MsgUtils.getMsg(authException.getMessage()), null)));
+                ResultBean.error(MsgUtils.getMsg("authenticationIsRequired"), null)));
         response.getWriter().flush();
     }
 }

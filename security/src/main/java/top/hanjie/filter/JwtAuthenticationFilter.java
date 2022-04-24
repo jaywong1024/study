@@ -4,7 +4,6 @@ import cn.hutool.core.util.StrUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-import top.hanjie.utils.BusinessExceptionUtils;
 import top.hanjie.entity.UserDetail;
 import top.hanjie.enums.CacheGroup;
 import top.hanjie.utils.CacheUtils;
@@ -30,15 +29,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             FilterChain filterChain) throws ServletException, IOException {
         // 1.获取 token
         String token = JwtUtils.getToken(request);
-        // 2.校验 token 是否存在
-        if (StrUtil.isNotBlank(token)) {
-            // 3.判断 token 是否过期
-            BusinessExceptionUtils.assertFalse(() -> JwtUtils.expired(token), "loginExpiration");
-            // 4.获取 username
+        // 2.校验 token 是否存在 && 判断 token 是否过期
+        if (StrUtil.isNotBlank(token) && !JwtUtils.expired(token)) {
+            // 3.获取 username
             String username = JwtUtils.getSubject(token);
-            // 5.在缓存中获取用户信息
+            // 4.在缓存中获取用户信息
             UserDetail user = CacheUtils.get(CacheGroup.USER, username, UserDetail.class);
-            // 6.插入 authentication 到上下文中
+            // 5.插入 authentication 到上下文中
             if (Objects.nonNull(user)) {
                 UsernamePasswordAuthenticationToken authentication
                         = new UsernamePasswordAuthenticationToken(user, user.getPassword(), user.getAuthorities());

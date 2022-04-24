@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import top.hanjie.bean.ResultBean;
+import top.hanjie.utils.MsgUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,8 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        response.getWriter().println(JSONObject.toJSONString(ResultBean.error("权限不足", null)));
+        response.getWriter().println(JSONObject.toJSONString(
+                ResultBean.error(MsgUtils.getMsg("noApiPermission"), null)));
         response.getWriter().flush();
     }
 
