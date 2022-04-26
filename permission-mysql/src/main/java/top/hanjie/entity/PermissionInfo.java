@@ -26,5 +26,9 @@ public class PermissionInfo extends BaseInfo {
      * 条件
      */
     private String conditionExpression;
+    /**
+     * 备注
+     */
+    private String remark;
 
 }

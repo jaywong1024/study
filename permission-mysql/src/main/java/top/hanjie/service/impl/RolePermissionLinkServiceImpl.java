@@ -10,6 +10,7 @@ import top.hanjie.service.RolePermissionLinkService;
 import top.hanjie.utils.CacheUtils;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 /**
  * 角色与权限关联接口实现
@@ -35,7 +36,9 @@ public class RolePermissionLinkServiceImpl
      */
     public void cache() {
         try {
-            this.list().forEach(r -> CacheUtils.set(CacheGroup.PERMISSION_LINK, r.getId(), r, 3600 * 24 * 100));
+            List<RolePermissionLink> all = this.list();
+            CacheUtils.set(CacheGroup.PERMISSION_LINK, "all", all, 3600 * 24 * 100);
+            all.forEach(r -> CacheUtils.set(CacheGroup.PERMISSION_LINK, r.getId(), r, 3600 * 24 * 100));
         } catch (Exception e) {
             log.error("RolePermissionLink insert cache error!");
         }

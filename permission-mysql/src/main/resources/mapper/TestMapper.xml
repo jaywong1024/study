@@ -6,12 +6,12 @@
         SELECT *
         FROM (SELECT t2.*
               FROM test t1
-                       LEFT JOIN test t2 ON t1.id = t2.id)
+                       LEFT JOIN test t2 ON t1.id = t2.id) tt
         union all
         SELECT *
         FROM (SELECT t2.*
               FROM test t1
-                       LEFT JOIN test t2 ON t1.id = t2.id)
+                       LEFT JOIN test t2 ON t1.id = t2.id) dd
     </select>
 
     <select id="join" resultType="top.hanjie.entity.Test">

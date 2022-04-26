@@ -1,69 +1,68 @@
+/*
+ * Copyright (C), 2018-2022, 龙腾出行
+ * FileName: PermissionInterceptor
+ * Author:   dragonpass
+ * Date:     2022/4/25 0025 13:46
+ * Description:
+ * History:
+ * <author>          <time>          <version>          <desc>
+ * dragonpass           13:46                       描述
+ */
 package top.hanjie.interceptor;
 
-import lombok.extern.slf4j.Slf4j;
-import net.sf.jsqlparser.parser.CCJSqlParserUtil;
-import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.select.PlainSelect;
-import net.sf.jsqlparser.statement.select.Select;
-import net.sf.jsqlparser.statement.select.SelectBody;
-import org.apache.ibatis.executor.statement.StatementHandler;
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.plugin.*;
-import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.reflection.SystemMetaObject;
-import org.apache.ibatis.session.ResultHandler;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+import top.hanjie.entity.PermissionInfo;
+import top.hanjie.service.PermissionInfoService;
+import top.hanjie.utils.ThreadLocalUtils;
 
-import java.util.Properties;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * 数据权限拦截器
+ * 权限校验拦截器.
  *
  * @author 黄汉杰
+ * <p>描述：<p>
+ * <p>文件名称: PermissionInterceptor</p>
+ * <p>创建时间：2022/4/25 0025 13:46<p>
+ * Copyright (C), 2018-2022, 龙腾出行
+ * @since 1.0.0
+ * History:
  */
-@Slf4j
-//@Component
-@Intercepts({@Signature(type = StatementHandler.class, method = "query", args = {Statement.class, ResultHandler.class})})
-public class PermissionInterceptor implements Interceptor {
+
+public class PermissionInterceptor implements HandlerInterceptor {
+
+    @Resource
+    private PermissionInfoService permissionInfoService;
 
     @Override
-    public Object intercept(Invocation invocation) throws Throwable {
-
-        // 1.获取 StatementHandler ，默认是 RoutingStatementHandler
-        StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
-        // 2.获取 StatementHandler 包装类
-        MetaObject metaObjectHandler = SystemMetaObject.forObject(statementHandler);
-        // 3.获取查询接口映射的相关信息
-        MappedStatement mappedStatement = (MappedStatement) metaObjectHandler.getValue("delegate.mappedStatement");
-        // 4.获取请求时的参数
-        Object parameterObject = statementHandler.getParameterHandler().getParameterObject();
-        // 5.获取 sql
-        String sql = mappedStatement.getBoundSql(parameterObject).getSql();
-        // 6.获取执行 sql 方法（这里可以搞个拓展啥的，限定什么方法才做数据权限）
-        String sqlId = mappedStatement.getId();
-
-        Statement parse = CCJSqlParserUtil.parse(sql);
-        Select select = (Select) parse;
-        SelectBody selectBody = select.getSelectBody();
-
-        PlainSelect plainSelect = (PlainSelect) selectBody;
-
-
-        MetaObject metaObject = SystemMetaObject.forObject(statementHandler);
-        metaObject.setValue("delegate.boundSql.sql", sql);
-
-        // 调用原方法
-        return invocation.proceed();
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        // 1.请求头拿取角色信息
+        String role = request.getHeader("role");
+        // 2.判断是否有数据权限
+        if (StrUtil.isNotBlank(role)) {
+            // 3.从缓存读取
+            List<PermissionInfo> permissions = this.permissionInfoService
+                    .getByRoleIds(Arrays.asList(role.split(",")));
+            // 4.如果存则插入 thread local
+            if (CollectionUtil.isNotEmpty(permissions)) {
+                ThreadLocalUtils.set("permissions", permissions);
+            }
+        }
+        return Boolean.TRUE;
     }
 
     @Override
-    public Object plugin(Object target) {
-        // 把被拦截对象生成一个代理对象
-        return Plugin.wrap(target, this);
-    }
-
-    @Override
-    public void setProperties(Properties properties) {
-
+    public void postHandle(HttpServletRequest request, HttpServletResponse response,
+                           Object handler, ModelAndView modelAndView) throws Exception {
+        // 干掉 permissions
+        ThreadLocalUtils.remove("permissions");
     }
 
 }

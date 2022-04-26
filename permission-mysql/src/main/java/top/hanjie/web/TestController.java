@@ -1,15 +1,17 @@
 package top.hanjie.web;
 
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.hanjie.bean.ResultBean;
+import top.hanjie.entity.PermissionInfo;
 import top.hanjie.entity.Test;
 import top.hanjie.mapper.TestMapper;
+import top.hanjie.service.PermissionInfoService;
 import top.hanjie.service.TestService;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,7 +27,8 @@ public class TestController {
     private TestService testService;
     @Resource
     private TestMapper  testMapper;
-
+    @Resource
+    private PermissionInfoService permissionInfoService;
 
     @GetMapping("/list")
     public ResultBean<List<Test>> list() {
@@ -40,6 +43,20 @@ public class TestController {
     @GetMapping("/join")
     public ResultBean<List<Test>> join() {
         return ResultBean.ok(this.testMapper.join());
+    }
+
+    @PostMapping("/add")
+    public ResultBean<Test> add(@RequestBody Test test) {
+        test.setStatus(0);
+        test.setCreateId("1");
+        test.setCreateTime(LocalDateTime.now());
+        this.testService.save(test);
+        return ResultBean.ok(test);
+    }
+
+    @GetMapping("getPermissionByRoleIds")
+    public ResultBean<List<PermissionInfo>> getPermissionByRoleIds(String ids) {
+       return ResultBean.ok(this.permissionInfoService.getByRoleIds(Arrays.asList(ids.split(","))));
     }
 
 }
