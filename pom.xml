@@ -23,6 +23,7 @@
         <module>common</module>
         <module>cache</module>
         <module>permission-mysql</module>
+        <module>minio</module>
     </modules>
 
     <!-- 配置 -->
@@ -35,6 +36,8 @@
         <open-feign.version>3.1.1</open-feign.version>
         <fastjson.version>2.0.1</fastjson.version>
         <jsqlparser.version>4.4</jsqlparser.version>
+        <minio.version>8.2.1</minio.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
     </properties>
 
     <dependencies>
@@ -53,6 +56,18 @@
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- 图片压缩 -->
+            <dependency>
+                <groupId>net.coobird</groupId>
+                <artifactId>thumbnailator</artifactId>
+                <version>${thumbnailator.version}</version>
+            </dependency>
+            <!-- minio -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
             <!-- jsqlparser -->
             <dependency>
                 <groupId>com.github.jsqlparser</groupId>

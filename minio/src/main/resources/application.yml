@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: minio
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 512MB
+
+server:
+  port: 8088
+
+minio:
+  endpoint: http://vm233.com:9001
+  accessKey: ADMIN
+  secretKey: MinIO123456
