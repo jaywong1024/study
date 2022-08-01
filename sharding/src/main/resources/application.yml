@@ -37,9 +37,6 @@ mybatis-plus:
 logging:
   level:
     web: debug
-    org:
-      example:
-        security: debug
 
 # sharding-jdbc
 sharding:
