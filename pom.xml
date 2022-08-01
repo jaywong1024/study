@@ -24,6 +24,7 @@
         <module>cache</module>
         <module>permission-mysql</module>
         <module>minio</module>
+        <module>sharding</module>
     </modules>
 
     <!-- 配置 -->
@@ -38,6 +39,7 @@
         <jsqlparser.version>4.4</jsqlparser.version>
         <minio.version>8.2.1</minio.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
+        <sharding-sphere.version>3.1.0</sharding-sphere.version>
     </properties>
 
     <dependencies>
@@ -56,6 +58,12 @@
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- sharding-jdbc -->
+            <dependency>
+                <groupId>io.shardingsphere</groupId>
+                <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
+                <version>${sharding-sphere.version}</version>
+            </dependency>
             <!-- 图片压缩 -->
             <dependency>
                 <groupId>net.coobird</groupId>

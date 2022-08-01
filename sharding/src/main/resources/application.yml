@@ -1,0 +1,70 @@
+server:
+  servlet:
+    # 转码 utf-8
+    encoding:
+      force: true
+      enabled: true
+      charset: utf-8
+  port: 8866
+
+spring:
+  # 国际化
+  messages:
+    basename: message
+    encoding: utf-8
+  main:
+    # 当遇到同样名字的时否允许覆盖注册
+    allow-bean-definition-overriding: true
+  mvc:
+    # 打印 web-log
+    log-request-details: true
+
+# mybatis plus 配置
+mybatis-plus:
+  # 检查 XML 映射文件
+  check-config-location: true
+  configuration:
+    # 驼峰命名
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      # 设置逻辑删除
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+
+# 配置日志级别
+logging:
+  level:
+    web: debug
+    org:
+      example:
+        security: debug
+
+# sharding-jdbc
+sharding:
+  jdbc:
+    datasource:
+      names: ms,sl1
+      ms:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://192.168.7.233:3306/sharding?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: root
+        password: 123456
+      sl1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        jdbc-url: jdbc:mysql://192.168.7.234:3306/sharding?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        username: root
+        password: 123456
+    config:
+      sharding:
+        default-data-source-name: ms
+      masterslave:
+        name: ms
+        master-data-source-name: ms
+        slave-data-source-names:
+         - sl1
+      props:
+        sql.show: true
