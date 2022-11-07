@@ -1,0 +1,13 @@
+server:
+  servlet:
+    # 转码 utf-8
+    encoding:
+      force: true
+      enabled: true
+      charset: utf-8
+  port: 8821
+
+# 配置日志级别
+logging:
+  level:
+    web: debug

@@ -25,6 +25,7 @@
         <module>permission-mysql</module>
         <module>minio</module>
         <module>sharding</module>
+        <module>rocks-db</module>
     </modules>
 
     <!-- 配置 -->
@@ -40,6 +41,7 @@
         <minio.version>8.2.1</minio.version>
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <sharding-sphere.version>3.1.0</sharding-sphere.version>
+        <rocksdb.version>7.3.1</rocksdb.version>
     </properties>
 
     <dependencies>
