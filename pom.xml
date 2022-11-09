@@ -26,6 +26,7 @@
         <module>minio</module>
         <module>sharding</module>
         <module>rocks-db</module>
+        <module>spring-framework</module>
     </modules>
 
     <!-- 配置 -->
