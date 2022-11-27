@@ -9,7 +9,7 @@ import java.util.Optional;
  *
  * @author 黄汉杰
  */
-public class ThreadLocalUtils<T> {
+public class ThreadLocalUtils {
 
     private static final ThreadLocal<Map<String, Object>> THREAD_LOCAL
             = ThreadLocal.withInitial(() -> new HashMap<>(10));
