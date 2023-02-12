@@ -1,4 +1,4 @@
-package top.hanjie.jvm.gc;
+package top.hanjie.jvm.memory;
 
 /**
  * 虚拟机栈测试类
