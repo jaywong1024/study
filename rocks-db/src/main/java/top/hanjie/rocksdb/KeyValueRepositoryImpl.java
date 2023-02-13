@@ -23,7 +23,7 @@ import java.util.List;
 @Component
 public class KeyValueRepositoryImpl implements KeyValueRepository<String, String> {
 
-    private final static String PATCH = "/tmp/rocks-db";
+    private final static String PATCH = "/Users/huanghanjie/Project/Java/tmp/rocks-db";
     private final static String NAME = "rocks-db";
     protected RocksDB rocksDb;
 
