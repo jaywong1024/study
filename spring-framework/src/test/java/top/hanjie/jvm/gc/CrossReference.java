@@ -1,4 +1,4 @@
-package top.hanjie.jvm.memory;
+package top.hanjie.jvm.gc;
 
 /**
  * 交叉引用
