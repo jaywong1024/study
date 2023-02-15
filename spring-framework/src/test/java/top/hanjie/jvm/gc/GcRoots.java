@@ -13,7 +13,7 @@ public class GcRoots {
         GcRoots localGcRoots = new GcRoots();
         // 5.被锁（synchronized）持有的对象的引用
         Object objA = "你干嘛啊，哎哟";
-        Object objB = objA
+        Object objB = objA;
         synchronized (objA) {
             System.out.println(objA);
         }
