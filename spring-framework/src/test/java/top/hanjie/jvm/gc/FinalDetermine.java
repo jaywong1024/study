@@ -34,7 +34,12 @@ public class FinalDetermine {
         // 休眠一下等待 finalize 执行
         // 这里不休眠的话，下面的打印结果可能为 null，因为从一个对象被判定为不可达开始，到 finalize() 方法被执行，所花费的时长是任意的
         Thread.sleep(100);
-        // 打印结果判断 test 是否为 null
+        // 打印结果查看 test 是否被回收
+        System.out.println(test);
+        // 再次将变量赋值为 null 并且申请 gc 查看 test 是否被回收
+        test = null;
+        System.gc();
+        Thread.sleep(100);
         System.out.println(test);
     }
 
