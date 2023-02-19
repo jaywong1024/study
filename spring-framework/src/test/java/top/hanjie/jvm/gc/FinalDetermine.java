@@ -8,6 +8,7 @@ import lombok.SneakyThrows;
  * @author 黄汉杰
  * <p>描述：最终判定测试<p>
  * <p>创建时间：2023/2/15 0015 11:02<p>
+ * 启动参数：-XX:+PrintGCDetails（打印 GC 详细信息）
  */
 public class FinalDetermine {
 
