@@ -84,7 +84,7 @@ class Phantom {
                 System.gc();
                 // 因为 Phantom 对象覆写了 finalize() 方法，JVM 也不知道它执行了 finalize() 方法还能不能与 GC Roots 建立引用链
                 // 所以不能直接回收，需要执行 finalize() 方法
-                // 又因为执行 finalize() 方法方法的优先级比较低，所以 gc 搞完了都还没执行
+                // 又因为执行 finalize() 方法的线程优先级比较低，所以 gc 搞完了 finalize() 方法都还没执行
                 System.out.println("Full GC 完成！");
                 Thread.sleep(1000);
             }
