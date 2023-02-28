@@ -9,8 +9,9 @@ package top.hanjie.jvm.classinfo;
  */
 public class Test implements TestApi {
 
+    private static final Test test = new Test();
+
     public static void main(String[] args) {
-        Test test = new Test();
         int a = test.a();
         System.out.println(a);
     }
