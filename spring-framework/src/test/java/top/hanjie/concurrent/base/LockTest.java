@@ -1,4 +1,4 @@
-package top.hanjie.juc;
+package top.hanjie.concurrent.base;
 
 import lombok.SneakyThrows;
 

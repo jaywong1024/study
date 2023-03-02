@@ -1,4 +1,4 @@
-package top.hanjie.juc;
+package top.hanjie.concurrent.base;
 
 import java.util.stream.IntStream;
 
