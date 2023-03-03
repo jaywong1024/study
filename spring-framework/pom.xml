@@ -12,6 +12,11 @@
     <artifactId>spring-framework</artifactId>
 
     <dependencies>
+        <!--查看对象头工具-->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+        </dependency>
         <!-- common -->
         <dependency>
             <groupId>top.hanjie</groupId>
