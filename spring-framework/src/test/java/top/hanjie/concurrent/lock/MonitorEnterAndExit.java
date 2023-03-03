@@ -1,4 +1,4 @@
-package top.hanjie.concurrent.concurrent;
+package top.hanjie.concurrent.lock;
 
 public class MonitorEnterAndExit {
 

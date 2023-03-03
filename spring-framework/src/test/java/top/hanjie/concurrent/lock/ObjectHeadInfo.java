@@ -1,4 +1,4 @@
-package top.hanjie.concurrent.concurrent;
+package top.hanjie.concurrent.lock;
 
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
