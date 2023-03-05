@@ -1,5 +1,7 @@
 package top.hanjie.concurrent.base;
 
+import lombok.SneakyThrows;
+
 /**
  * 线程状态测试
  *
@@ -7,8 +9,28 @@ package top.hanjie.concurrent.base;
  */
 public class ThreadStateTest {
 
+    public static Runnable getRunnable(Object target, int num) {
+        return () -> {
+            try {
+                synchronized (target) {
+                    Thread.sleep(num);
+                    System.out.println(Thread.currentThread().getName() + " over");
+                }
+            } catch (Exception ignored) {
+            }
+        };
+    }
+
+    @SneakyThrows
     public static void main(String[] args) {
-        // todo 线程状态测试
+        Object obj = new Object();
+        Thread t1 = new Thread(getRunnable(obj, 20_000), "t1");
+        Thread t2 = new Thread(getRunnable(obj, 20_000), "t2");
+        t1.start();
+        Thread.sleep(10);
+        t2.start();
+        t2.join();
+        System.out.println(Thread.currentThread().getName() + " over");
     }
 
 }

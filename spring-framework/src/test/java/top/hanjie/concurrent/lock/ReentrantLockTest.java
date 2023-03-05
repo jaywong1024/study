@@ -13,40 +13,25 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ReentrantLockTest {
 
-    private static final Lock lock = new ReentrantLock();
-    static class LockRunnable implements Runnable {
-        @Override
-        @SneakyThrows
-        public void run() {
-            String threadName = Thread.currentThread().getName();
+    private static final Lock reentrantLock = new ReentrantLock();
+    private static final Lock nonReentrantLock = new NonReentrantLock();
+
+    @SneakyThrows
+    public static void test(Lock lock, String lockName, int num, int max) {
+        if (num <= max) {
             if (lock.tryLock()) {
-                try {
-                    System.out.println(threadName + " 获取锁成功！");
-                    Thread.sleep(1_000);
-                } finally {
-                    lock.unlock();
-                }
+                System.out.println(lockName + num + " 获取锁成功！");
             } else {
-                System.out.println(threadName + " 获取锁失败！");
+                System.out.println(lockName + num + " 获取锁失败！");
             }
+            test(lock, lockName, ++num, max);
+        } else {
+            lock.unlock();
         }
     }
-    @SneakyThrows
-    public static void testReentrantLock() {
-        Thread thread1 = new Thread(new LockRunnable(), "Thread1");
-        Thread thread2 = new Thread(new LockRunnable(), "Thread2");
-        Thread thread3 = new Thread(new LockRunnable(), "Thread3");
-        thread1.start();
-        thread2.start();
-        thread3.start();
-        Thread.sleep(2_000);
-        LockRunnable lockRunnable = new LockRunnable();
-        lockRunnable.run();
-        lockRunnable.run();
-        lockRunnable.run();
-    }
     public static void main(String[] args) {
-        testReentrantLock();
+        test(reentrantLock, "reentrantLock", 0, 5);
+        test(nonReentrantLock, "nonReentrantLock", 0, 5);
     }
 
 }
