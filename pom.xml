@@ -44,6 +44,7 @@
         <sharding-sphere.version>3.1.0</sharding-sphere.version>
         <rocksdb.version>7.3.1</rocksdb.version>
         <jol.version>0.9</jol.version>
+        <google.guava.version>28.0-jre</google.guava.version>
     </properties>
 
     <dependencies>
@@ -62,6 +63,12 @@
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- bloom filter -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
             <!--查看对象头工具-->
             <dependency>
                 <groupId>org.openjdk.jol</groupId>

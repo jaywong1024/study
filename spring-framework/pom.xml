@@ -12,6 +12,11 @@
     <artifactId>spring-framework</artifactId>
 
     <dependencies>
+        <!-- bloom filter -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
         <!--查看对象头工具-->
         <dependency>
             <groupId>org.openjdk.jol</groupId>
