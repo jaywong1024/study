@@ -12,6 +12,10 @@
     <artifactId>spring-framework</artifactId>
 
     <dependencies>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
         <!-- bloom filter -->
         <dependency>
             <groupId>com.google.guava</groupId>

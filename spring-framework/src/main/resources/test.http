@@ -1,0 +1,19 @@
+POST http://localhost:8080/phone/sayInfo
+Content-Type: application/json
+
+{
+  "brand": "apple",
+  "island": "灵动岛好丑啊"
+}
+
+###
+
+POST http://localhost:8080/phone/sayInfo
+Content-Type: application/json
+
+{
+  "brand": "xiaomi",
+  "makeFriend1999": "1999交个朋友"
+}
+
+###
