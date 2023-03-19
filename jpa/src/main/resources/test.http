@@ -1,0 +1,9 @@
+GET http://localhost:8080/goods/getOne
+Content-Type: application/json
+
+{
+  "id": 1
+}
+
+
+###

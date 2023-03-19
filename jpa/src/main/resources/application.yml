@@ -1,0 +1,29 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  # 配置 HikariCP 数据源
+  datasource:
+    # 数据源类型
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      # 等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生 SQL 异常
+      connection-timeout: 30000
+      # 最小连接数
+      minimum-idle: 10
+      # 最大连接数
+      maximum-pool-size: 20
+      # 自动提交
+      auto-commit: true
+      # 连接超时的最大时长（毫秒），超时则被释放（retired），默认 10 分钟
+      idle-timeout: 600000
+      # 连接池名字
+      pool-name: DateSourceHikariCP
+      max-lifetime: 1800000 # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟
+      connection-test-query: SELECT 1
+
+    # 配置数据库连接
+    url: jdbc:mysql://192.168.2.200:3306/jpa?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver

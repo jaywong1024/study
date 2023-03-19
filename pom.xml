@@ -27,6 +27,7 @@
         <module>sharding</module>
         <module>rocks-db</module>
         <module>spring-framework</module>
+        <module>jpa</module>
     </modules>
 
     <!-- 配置 -->
@@ -46,6 +47,7 @@
         <jol.version>0.9</jol.version>
         <google.guava.version>28.0-jre</google.guava.version>
         <cglib.version>3.3.0</cglib.version>
+        <jpa.comment.version>1.0.0</jpa.comment.version>
     </properties>
 
     <dependencies>
@@ -64,6 +66,12 @@
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- jpa comment -->
+            <dependency>
+                <groupId>com.github.biyanwen</groupId>
+                <artifactId>jpa-comment-spring-boot-starter</artifactId>
+                <version>${jpa.comment.version}</version>
+            </dependency>
             <!-- cglib -->
             <dependency>
                 <groupId>cglib</groupId>
