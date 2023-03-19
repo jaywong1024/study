@@ -45,6 +45,7 @@
         <rocksdb.version>7.3.1</rocksdb.version>
         <jol.version>0.9</jol.version>
         <google.guava.version>28.0-jre</google.guava.version>
+        <cglib.version>3.3.0</cglib.version>
     </properties>
 
     <dependencies>
@@ -63,6 +64,12 @@
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- cglib -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+            </dependency>
             <!-- bloom filter -->
             <dependency>
                 <groupId>com.google.guava</groupId>
