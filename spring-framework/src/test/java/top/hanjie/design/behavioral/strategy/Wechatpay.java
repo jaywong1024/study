@@ -1,4 +1,4 @@
-package top.hanjie.design.create.behavioral.strategy;
+package top.hanjie.design.behavioral.strategy;
 
 import java.math.BigDecimal;
 
