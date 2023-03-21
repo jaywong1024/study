@@ -1,0 +1,9 @@
+GET http://localhost:8080/aop/test
+Content-Type: application/json
+
+###
+
+GET http://localhost:8080/aop/test?ex=1
+Content-Type: application/json
+
+###

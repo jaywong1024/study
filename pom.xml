@@ -48,6 +48,7 @@
         <google.guava.version>28.0-jre</google.guava.version>
         <cglib.version>3.3.0</cglib.version>
         <jpa.comment.version>1.0.0</jpa.comment.version>
+        <aspectj.version>1.9.6</aspectj.version>
     </properties>
 
     <dependencies>
@@ -66,6 +67,12 @@
     <!-- 子模块依赖管理 -->
     <dependencyManagement>
         <dependencies>
+            <!-- aspectj -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
             <!-- jpa comment -->
             <dependency>
                 <groupId>com.github.biyanwen</groupId>
