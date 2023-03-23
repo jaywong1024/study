@@ -28,6 +28,7 @@
         <module>rocks-db</module>
         <module>spring-framework</module>
         <module>jpa</module>
+        <module>jay</module>
     </modules>
 
     <!-- 配置 -->
