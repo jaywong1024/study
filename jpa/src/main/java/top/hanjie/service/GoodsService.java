@@ -6,4 +6,6 @@ public interface GoodsService {
 
     GoodsDto.GetOne.Out getOne(GoodsDto.GetOne.In in);
 
+    void save(GoodsDto.Save.In in);
+
 }

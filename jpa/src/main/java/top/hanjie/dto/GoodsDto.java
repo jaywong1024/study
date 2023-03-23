@@ -20,4 +20,13 @@ public class GoodsDto {
             private Long id;
         }
     }
+    public static class Save {
+        @Data
+        public static class In {
+            private Long id;
+            private String name;
+            private BigDecimal price;
+            private String iconUrl;
+        }
+    }
 }
