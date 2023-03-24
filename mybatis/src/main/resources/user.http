@@ -1,0 +1,31 @@
+POST http://localhost:8080/user/save
+Content-Type: application/json
+
+{
+  "username": "Jay",
+  "birthday": "1998-02-21",
+  "avatarUrl": "avatarUrl-1"
+}
+
+###
+
+POST http://localhost:8080/user/save
+Content-Type: application/json
+
+{
+  "id": 4,
+  "username": "Jay-modify",
+  "birthday": "1998-02-21",
+  "avatarUrl": "avatarUrl-modify"
+}
+
+###
+
+GET http://localhost:8080/user/getOne
+Content-Type: application/json
+
+{
+  "id": 4
+}
+
+###

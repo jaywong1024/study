@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.hanjie.mapper.UserMapper">
+
+    <select id="getOne" parameterType="top.hanjie.dto.UserDto$GetOne$In"
+            resultType="top.hanjie.entity.User">
+        select * from user where id = #{id}
+    </select>
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id"
+            parameterType="top.hanjie.dto.UserDto$Save$In">
+        insert into user (username, birthday, avatar_url)
+        values (#{username}, #{birthday, jdbcType=DATE}, #{avatarUrl})
+    </insert>
+    
+    <update id="modify" parameterType="top.hanjie.dto.UserDto$Save$In">
+        update user set username = #{username},
+                        birthday = #{birthday, jdbcType=DATE},
+                        avatar_url = #{avatarUrl}
+        where id = #{id}
+    </update>
+
+</mapper>

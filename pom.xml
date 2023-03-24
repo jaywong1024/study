@@ -29,6 +29,7 @@
         <module>spring-framework</module>
         <module>jpa</module>
         <module>jay</module>
+        <module>mybatis</module>
     </modules>
 
     <!-- 配置 -->
