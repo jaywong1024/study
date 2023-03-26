@@ -19,7 +19,7 @@ spring:
       max-lifetime: 1800000 # 连接的生命时长（毫秒），超时而且没被使用则被释放（retired），默认:30分钟
       connection-test-query: SELECT 1
     # 配置数据库连接
-    url: jdbc:mysql://192.168.7.233:3306/mybatis?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    url: jdbc:mysql://192.168.2.200:3306/mybatis?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver

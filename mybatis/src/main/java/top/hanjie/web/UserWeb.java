@@ -19,9 +19,9 @@ public class UserWeb {
         return this.userService.save(in);
     }
 
-    @GetMapping("getOne")
-    public UserDto.Common.Out getOne(@RequestBody @Valid UserDto.GetOne.In in) {
-        return this.userService.getOne(in);
+    @GetMapping("getOne/{id}")
+    public UserDto.Common.Out getOne(@PathVariable(value = "id") Long id) {
+        return this.userService.getById(id);
     }
 
 }
