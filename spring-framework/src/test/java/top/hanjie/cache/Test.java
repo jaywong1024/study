@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
 public class Test {
 
     public static void main(String[] args) {
-        // 创建布隆过滤器对象，
+        // 创建布隆过滤器对象
         BloomFilter<String> filter = BloomFilter.create(
                 Funnels.stringFunnel(Charset.defaultCharset()),
                 2 << 24,
