@@ -30,6 +30,7 @@
         <module>jpa</module>
         <module>jay</module>
         <module>mybatis</module>
+        <module>elastic-search</module>
     </modules>
 
     <!-- 配置 -->
@@ -51,6 +52,7 @@
         <cglib.version>3.3.0</cglib.version>
         <jpa.comment.version>1.0.0</jpa.comment.version>
         <aspectj.version>1.9.6</aspectj.version>
+        <elasticsearch>7.7.0</elasticsearch>
     </properties>
 
     <dependencies>
