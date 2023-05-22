@@ -34,7 +34,7 @@ public class PoolTest {
 
     @SneakyThrows
     public static void main(String[] args) {
-        //通过 ThreadPoolExecutor 构造函数自定义参数创建
+        // 通过 ThreadPoolExecutor 构造函数自定义参数创建
         ThreadPoolExecutor executor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE,
                 MAX_POOL_SIZE,
