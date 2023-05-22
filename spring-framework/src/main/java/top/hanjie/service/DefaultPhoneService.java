@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public abstract class DefaultPhoneService implements PhoneService {
 
-    private final static Map<String, PhoneService> PHONE_SERVICE_IMPLS = new ConcurrentHashMap<>();
+    private final static Map<String, PhoneService> PHONE_SERVICE_MAP = new ConcurrentHashMap<>();
     private static ApplicationContext APPLICATION_CONTEXT = null;
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
@@ -17,13 +17,11 @@ public abstract class DefaultPhoneService implements PhoneService {
         APPLICATION_CONTEXT = applicationContext;
     }
     public static PhoneService getService(String brand) {
-        if (CollUtil.isEmpty(PHONE_SERVICE_IMPLS)) {
-            synchronized (APPLICATION_CONTEXT) {
-                PHONE_SERVICE_IMPLS.putAll(APPLICATION_CONTEXT.getBeansOfType(PhoneService.class));
-            }
+        if (CollUtil.isEmpty(PHONE_SERVICE_MAP)) {
+            PHONE_SERVICE_MAP.putAll(APPLICATION_CONTEXT.getBeansOfType(PhoneService.class));
         }
         // 获取实现类
-        return PHONE_SERVICE_IMPLS.getOrDefault(brand + "ServiceImpl", null);
+        return PHONE_SERVICE_MAP.getOrDefault(brand + "ServiceImpl", null);
     }
 
     @Override
