@@ -31,6 +31,10 @@
         <module>jay</module>
         <module>mybatis</module>
         <module>elastic-search</module>
+        <module>redisson</module>
+        <module>seata</module>
+        <module>Canal</module>
+        <module>open-feign</module>
     </modules>
 
     <!-- 配置 -->
