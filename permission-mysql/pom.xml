@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>study</artifactId>
-        <groupId>top.hanjie</groupId>
+        <groupId>io.github.jaywong1024</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -26,13 +26,13 @@
         </dependency>
         <!-- cache -->
         <dependency>
-            <groupId>top.hanjie</groupId>
+            <groupId>io.github.jaywong1024</groupId>
             <artifactId>cache</artifactId>
             <version>1.0.0</version>
         </dependency>
         <!-- common -->
         <dependency>
-            <groupId>top.hanjie</groupId>
+            <groupId>io.github.jaywong1024</groupId>
             <artifactId>common</artifactId>
             <version>1.0.0</version>
         </dependency>

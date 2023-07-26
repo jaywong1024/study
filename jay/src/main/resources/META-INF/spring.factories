@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-top.hanjie.JayAutoConfig
+io.github.jaywong1024.JayAutoConfig

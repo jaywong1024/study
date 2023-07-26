@@ -5,7 +5,7 @@
 
     <parent>
         <artifactId>study</artifactId>
-        <groupId>top.hanjie</groupId>
+        <groupId>io.github.jaywong1024</groupId>
         <version>1.0.0</version>
     </parent>
 
@@ -15,13 +15,13 @@
     <dependencies>
         <!-- cache -->
         <dependency>
-            <groupId>top.hanjie</groupId>
+            <groupId>io.github.jaywong1024</groupId>
             <artifactId>cache</artifactId>
             <version>1.0.0</version>
         </dependency>
         <!-- common -->
         <dependency>
-            <groupId>top.hanjie</groupId>
+            <groupId>io.github.jaywong1024</groupId>
             <artifactId>common</artifactId>
             <version>1.0.0</version>
         </dependency>

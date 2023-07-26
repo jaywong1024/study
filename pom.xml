@@ -11,7 +11,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>top.hanjie</groupId>
+    <groupId>io.github.jaywong1024</groupId>
     <artifactId>study</artifactId>
     <version>1.0.0</version>
 
