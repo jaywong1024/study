@@ -39,5 +39,6 @@
     <!-- Spring Boot 项目在打包的时候，会生成两个 jar 包，一个普通 jar 包，一个可执行 jar 包，
          它们是先后生成的同名 jar 文件，即可执行 jar 包会覆盖普通 jar 包 -->
     <!-- 其他项目在引用 jar 包的时候，无法解析可执行 jar 包会报错：找不到符号 -->
+    <!-- 可以像上面一样，加一段 <classifier>exec</classifier> 处理这个问题 -->
 
 </project>
